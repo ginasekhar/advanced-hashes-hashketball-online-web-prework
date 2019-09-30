@@ -249,18 +249,21 @@ def player_with_longest_name
 end
 
 def winning_team
-  total_points = {:name, :number}
+  max_points = 0
   winning_team = ""
   game_hash.each do |home_or_away, team_details|
+    team_total = 0
+    
     team_details[:players].each do |player_stats|
-      total_points = 
-        most_points = player_stats[:points]
-        most_points_player = player_stats[:player_name]
-      end #if 
+      team_total += player_stats[:points]
       #binding.pry
     end #team_details
+    if team_total > max_points
+      max_points = team_total
+      winning_team = team_details[:team_name]
+    end #if
   end #game_hash
-  return most_points_player
+  return winning_team
 end
 
 
